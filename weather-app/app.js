@@ -749,7 +749,12 @@
     } catch (e) {
       if (token !== loadToken) return;
       $('heroCity').textContent = loc.name;
-      showNotice(`Couldn’t load weather (${e.message}). Check your connection and tap to retry.`, () => load(state.index));
+      $('heroLabel').textContent = loc.isCurrent ? 'My Location' : '';
+      renderDots();
+      const why = /429/.test(e.message)
+        ? 'The free weather service is busy (too many requests). Tap to try again in a little while.'
+        : `Couldn’t load weather (${e.message}). Check your connection and tap to retry.`;
+      showNotice(why, () => load(state.index));
     }
   }
 
