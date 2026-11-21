@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1c3d66" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Skies Weather</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated weather backdrop -->
+  <div id="sky"></div>
+  <canvas id="fx"></canvas>
+
+  <main id="app" class="app" aria-live="polite">
+    <section class="hero" id="hero">
+      <div class="hero-label" id="heroLabel">My Location</div>
+      <h1 class="hero-city" id="heroCity">Locating…</h1>
+      <div class="hero-temp" id="heroTemp">--</div>
+      <div class="hero-cond" id="heroCond">&nbsp;</div>
+      <div class="hero-hl" id="heroHL">&nbsp;</div>
+    </section>
+
+    <div class="compact" id="compact" aria-hidden="true">
+      <span id="compactCity"></span>
+      <span id="compactLine"></span>
+    </div>
+
+    <div id="notice" class="notice hidden"></div>
+
+    <section class="card" id="hourlyCard">
+      <p class="summary" id="summary"></p>
+      <div class="hourly" id="hourly"></div>
+    </section>
+
+    <section class="card" id="dailyCard">
+      <div class="card-head">
+        <span class="card-title"><svg viewBox="0 0 24 24" class="ti"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="dailyTitle">10-Day Forecast</span></span>
+        <div class="seg" role="tablist">
+          <button class="seg-btn active" data-range="10" role="tab">10 Days</button>
+          <button class="seg-btn" data-range="30" role="tab">30 Days</button>
+        </div>
+      </div>
+      <div id="daily" class="daily"></div>
+      <p id="dailyNote" class="daily-note hidden"></p>
+    </section>
+
+    <section class="tiles" id="tiles"></section>
+
+    <footer class="credit">Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a></footer>
+  </main>
+
+  <!-- Bottom toolbar -->
+  <nav class="toolbar">
+    <button id="unitBtn" class="tool-btn" aria-label="Toggle units">°C</button>
+    <div class="dots" id="dots"></div>
+    <button id="listBtn" class="tool-btn" aria-label="Locations">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+
+  <!-- Locations sheet -->
+  <div class="sheet hidden" id="sheet" role="dialog" aria-label="Locations">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2>Weather</h2>
+        <button class="done-btn" id="sheetDone">Done</button>
+      </div>
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="searchInput" type="search" placeholder="Search for a city or airport" autocomplete="off" />
+      </div>
+      <ul id="results" class="results hidden"></ul>
+      <ul id="savedList" class="saved"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
